@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport name="order-receipt"
+              pageWidth="595"
+              pageHeight="842"
+              columnWidth="515"
+              leftMargin="40"
+              rightMargin="40"
+              topMargin="40"
+              bottomMargin="40"
+              uuid="2f0d4d0d-7d35-4f0c-ae14-0db9689d156d">
+
+    <style name="ReceiptTitle" fontName="SansSerif" fontSize="20.0" bold="true" hTextAlign="Center" vTextAlign="Middle"/>
+    <style name="RestaurantName" fontName="SansSerif" fontSize="12.0" bold="true" hTextAlign="Center" vTextAlign="Middle"/>
+    <style name="Label" fontName="SansSerif" fontSize="10.0" bold="true"/>
+    <style name="TableHeader" fontName="SansSerif" fontSize="9.0" bold="true" backcolor="#F2F2F2" mode="Opaque" vTextAlign="Middle"/>
+
+    <parameter name="ORDER_ID" class="java.lang.String"/>
+    <parameter name="ORDER_DATE" class="java.lang.String"/>
+    <parameter name="RESTAURANT_NAME" class="java.lang.String"/>
+    <parameter name="CUSTOMER_ID" class="java.lang.String"/>
+    <parameter name="ORDER_TYPE" class="java.lang.String"/>
+    <parameter name="TOTAL" class="java.math.BigDecimal"/>
+    <parameter name="TOTAL_TEXT" class="java.lang.String"/>
+
+    <field name="productName" class="java.lang.String"/>
+    <field name="quantity" class="java.lang.Integer"/>
+    <field name="unitPrice" class="java.math.BigDecimal"/>
+    <field name="subtotal" class="java.math.BigDecimal"/>
+
+    <title height="150">
+        <element kind="staticText" uuid="5bc7f47e-8b32-4c08-a7a8-608e70d88490" key="staticText" x="0" y="0" width="515" height="30" style="ReceiptTitle">
+            <text><![CDATA[COMPROBANTE DE PEDIDO]]></text>
+        </element>
+        <element kind="textField" uuid="05312f2b-163c-4d74-b188-238ab70cb9ec" key="textField" x="0" y="35" width="515" height="20" style="RestaurantName" blankWhenNull="false">
+            <expression><![CDATA[$P{RESTAURANT_NAME}]]></expression>
+        </element>
+        <element kind="staticText" uuid="77512257-1bf0-4bb3-b813-06d186350c56" key="staticText" x="0" y="70" width="110" height="18" style="Label">
+            <text><![CDATA[Pedido:]]></text>
+        </element>
+        <element kind="textField" uuid="46805a07-e71f-49e4-8ed3-92f525bfcc0d" key="textField" x="110" y="70" width="405" height="18">
+            <expression><![CDATA[$P{ORDER_ID}]]></expression>
+        </element>
+        <element kind="staticText" uuid="caeaf8df-72de-40e6-9f22-e6254d51caa7" key="staticText" x="0" y="90" width="110" height="18" style="Label">
+            <text><![CDATA[Fecha y hora:]]></text>
+        </element>
+        <element kind="textField" uuid="4b871147-cbc8-4222-a47d-04534e837991" key="textField" x="110" y="90" width="405" height="18">
+            <expression><![CDATA[$P{ORDER_DATE}]]></expression>
+        </element>
+        <element kind="staticText" uuid="8d47af9d-345f-438d-83bb-d6a51c06f56e" key="staticText" x="0" y="110" width="110" height="18" style="Label">
+            <text><![CDATA[Tipo de pedido:]]></text>
+        </element>
+        <element kind="textField" uuid="84443a7d-3340-4bfd-b518-69ead8d03f9d" key="textField" x="110" y="110" width="405" height="18">
+            <expression><![CDATA[$P{ORDER_TYPE}]]></expression>
+        </element>
+        <element kind="staticText" uuid="f4df7544-0aae-42bb-8848-05d85f835b3c" key="staticText" x="0" y="130" width="110" height="18" style="Label">
+            <text><![CDATA[Cliente:]]></text>
+        </element>
+        <element kind="textField" uuid="378da244-3502-4208-91c0-5ef6e718fb87" key="textField" x="110" y="130" width="405" height="18">
+            <expression><![CDATA[$P{CUSTOMER_ID}]]></expression>
+        </element>
+    </title>
+
+    <columnHeader height="30">
+        <element kind="staticText" uuid="3b988ed9-bd50-4168-bfd9-e64877ed639f" key="staticText" x="0" y="0" width="220" height="30" style="TableHeader" hTextAlign="Left">
+            <text><![CDATA[Producto]]></text>
+        </element>
+        <element kind="staticText" uuid="4cb7ea92-927f-4abf-9502-f2c46a053c83" key="staticText" x="220" y="0" width="70" height="30" style="TableHeader" hTextAlign="Center">
+            <text><![CDATA[Cant.]]></text>
+        </element>
+        <element kind="staticText" uuid="87461358-1526-46a1-a24b-486563c48f67" key="staticText" x="290" y="0" width="110" height="30" style="TableHeader" hTextAlign="Right">
+            <text><![CDATA[Precio unitario]]></text>
+        </element>
+        <element kind="staticText" uuid="22df13f8-7a71-4f51-b652-20f44cb3abc0" key="staticText" x="400" y="0" width="115" height="30" style="TableHeader" hTextAlign="Right">
+            <text><![CDATA[Subtotal]]></text>
+        </element>
+    </columnHeader>
+
+    <detail>
+        <band height="25">
+            <element kind="textField" uuid="a9d47f9a-bfc3-4a6a-a53e-74579a7158b2" key="textField" positionType="Float" x="0" y="0" width="220" height="25" textAdjust="StretchHeight" blankWhenNull="false" vTextAlign="Middle">
+                <expression><![CDATA[$F{productName}]]></expression>
+            </element>
+            <element kind="textField" uuid="a4e4ce58-97fc-46f2-9445-40e1f158a9b1" key="textField" x="220" y="0" width="70" height="25" hTextAlign="Center" vTextAlign="Middle">
+                <expression><![CDATA[$F{quantity}]]></expression>
+            </element>
+            <element kind="textField" uuid="c42628e4-62f0-4f81-aed0-0a78fdb99452" key="textField" x="290" y="0" width="110" height="25" pattern="$#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+                <expression><![CDATA[$F{unitPrice}]]></expression>
+            </element>
+            <element kind="textField" uuid="6db64f9c-6d15-4c50-8979-72ec93d15927" key="textField" x="400" y="0" width="115" height="25" pattern="$#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+                <expression><![CDATA[$F{subtotal}]]></expression>
+            </element>
+        </band>
+    </detail>
+
+    <summary height="100">
+        <element kind="line" uuid="5b8d8819-2f44-4736-9884-4f0b92be955d" key="line" x="0" y="10" width="515" height="1"/>
+        <element kind="staticText" uuid="a2bbb4a7-9bd5-491b-a4ab-20d97779c745" key="staticText" x="300" y="25" width="110" height="20" style="Label" hTextAlign="Right" vTextAlign="Middle">
+            <text><![CDATA[TOTAL:]]></text>
+        </element>
+        <element kind="textField" uuid="528e38ae-a537-47b4-a2a0-e455be09db81" key="textField" x="410" y="25" width="105" height="20" pattern="$#,##0.00" bold="true" hTextAlign="Right" vTextAlign="Middle">
+            <expression><![CDATA[$P{TOTAL}]]></expression>
+        </element>
+        <element kind="textField" uuid="994d5b88-9e41-4213-a63a-15259131d007" key="textField" x="0" y="60" width="515" height="20" hTextAlign="Center" vTextAlign="Middle">
+            <expression><![CDATA[$P{TOTAL_TEXT} + " COP"]]></expression>
+        </element>
+        <element kind="staticText" uuid="b88d5f00-5459-4553-a288-9735067a17d5" key="staticText" x="0" y="82" width="515" height="18" fontSize="8.0" hTextAlign="Center" vTextAlign="Middle">
+            <text><![CDATA[Este comprobante es informativo y no constituye una factura electrónica fiscal.]]></text>
+        </element>
+    </summary>
+</jasperReport>
